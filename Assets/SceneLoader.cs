@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
-    public void Escena (string escena)
+    public void Escena(string escena)
     {
-        //SceneManager.LoadScene(escena);
+        SceneManager.loadScene(escena);
     }
 }
