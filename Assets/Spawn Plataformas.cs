@@ -19,6 +19,7 @@ public class SpawnPlataformas : MonoBehaviour
 
     void GeneradorPlataformas(float distanciaY)
     {
+        float Ancho = Random.Range(-4, 4);//Random.Range(-Screen.width/2, Screen.width/2);
         plataforma.transform.position = new Vector3(0,0,0);
         GameObject[] plataformas = new GameObject[10] ;
         for(int i = 0; i < plataformas.Length; i++)
@@ -26,7 +27,7 @@ public class SpawnPlataformas : MonoBehaviour
             plataformas[i] = plataforma;
             
             if (i != 0){
-                plataformas[i].transform.position = plataformas[i-1].transform.position + new Vector3(0,distanciaY,0);
+                plataformas[i].transform.position = plataformas[i-1].transform.position + new Vector3(Ancho,distanciaY,0);
             }
             Debug.Log(plataformas[i].transform.position);
             Instantiate(plataformas[i]);
