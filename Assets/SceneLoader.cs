@@ -7,6 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     public void Escena(string escena)
     {
+        //Poner name de la escena desde el inspector
         SceneManager.LoadScene(escena);
     }
 

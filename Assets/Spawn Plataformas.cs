@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System.Numerics;
 using Vector3 = UnityEngine.Vector3;
+using Unity.VisualScripting;
 
 public class SpawnPlataformas : MonoBehaviour
 {
@@ -14,18 +15,26 @@ public class SpawnPlataformas : MonoBehaviour
 
     public IEnumerator Spawn()
     {
+        //Proximamente
         yield return new WaitForSeconds(retrasoSpawn);
     }
 
     void GeneradorPlataformas(float distanciaY)
     {
-        float Ancho = Random.Range(-4, 4);//Random.Range(-Screen.width/2, Screen.width/2);
+        //Set posicion origen de plataforma
         plataforma.transform.position = new Vector3(0,0,0);
+
+        //Crear 10 plataformas de prueba
         GameObject[] plataformas = new GameObject[10] ;
         for(int i = 0; i < plataformas.Length; i++)
         {
-            plataformas[i] = plataforma;
+            //Ancho decide el X donde spawn X la plataforma, renombrar variable a mas apropiada
+            float Ancho = Random.Range(-4.0f, 4.0f);//Random.Range(-Screen.width/2, Screen.width/2);
             
+            plataformas[i] = plataforma;
+
+            //Variar el y entre plataformas
+            distanciaY = distanciaEntrePlataformas + Random.Range(-1.0f, 3.0f);
             if (i != 0){
                 plataformas[i].transform.position = plataformas[i-1].transform.position + new Vector3(Ancho,distanciaY,0);
             }

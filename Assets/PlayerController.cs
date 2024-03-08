@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     bool isGround = false;
     public float fuerzaSalto;
+    private float auxY;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGround)//(Input.GetKeyDown("space")&& isGround)
+        //Si esta tocando algo, y estuvo en caida
+        if (isGround &&(auxY <transform.position.y ) )//(Input.GetKeyDown("space")&& isGround)
         {
             rb.AddForce(new Vector2(0, fuerzaSalto));
             Debug.Log("salto");
@@ -31,14 +33,24 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector2.right/50);
         }
+        //Actualizar Posicion
+        auxY = transform.position.y;
     }
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionStay2D(Collision2D other)
     {
-        isGround = true;    
+        isGround =true;
+        //Debug.Log("STAY");
     }
     
     void OnCollisionExit2D(Collision2D other)
     {
-        isGround = false;    
+        isGround = false;
+        //Debug.Log("Unstay");   
+    }
+    private void OnBecameInvisible() {
+        Debug.Log("invisible");
+        Destroy(this.gameObject);
+
+        //Esta bug, no anda
     }
 }
